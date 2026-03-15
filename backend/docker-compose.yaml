@@ -1,0 +1,10 @@
+services:
+  db: 
+    image: postgres:15
+    # url is postgres://soulfather:soulfather@localhost:5432/soulfather
+    environment:
+      POSTGRES_USER: soulfather
+      POSTGRES_PASSWORD: soulfather
+      POSTGRES_DB: soulfather
+    ports:
+      - "5432:5432"
