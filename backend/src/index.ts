@@ -7,8 +7,6 @@ import { auth } from "./auth";
 
 const app = express();
 
-app.all("/api/auth/*splat", toNodeHandler(auth));
-
 app.use(
   cors({
     origin: "*", // TODO: Replace with your frontend's origin
@@ -16,6 +14,8 @@ app.use(
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   }),
 );
+
+app.all("/api/auth/*splat", toNodeHandler(auth));
 
 app.use(express.json());
 
