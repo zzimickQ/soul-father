@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { openAPI } from "better-auth/plugins";
-import { prisma } from "../db/db";
+import { bearer, openAPI } from "better-auth/plugins";
+import { prisma } from "./db";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -19,7 +19,7 @@ export const auth = betterAuth({
       },
     },
   },
-  plugins: [openAPI()],
+  plugins: [bearer(), openAPI()],
   baseURL: {
     allowedHosts: ["localhost:3000"],
   },
