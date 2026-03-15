@@ -17,6 +17,10 @@ app.use(
 
 app.all("/api/auth/*splat", toNodeHandler(auth));
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
 app.use(express.json());
 
 app.use("/api", api);
