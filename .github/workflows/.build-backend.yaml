@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "backend/**"
-      - ".github/workflow/.build-backend.yaml"
+      - ".github/workflows/.build-backend.yaml"
       - "Dockerfile"
   workflow_dispatch:
 
