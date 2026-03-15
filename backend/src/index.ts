@@ -2,7 +2,7 @@ import { toNodeHandler } from "better-auth/node";
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
-import api from "./api";
+import { api } from "./api";
 import { auth } from "./auth";
 
 const app = express();
@@ -16,6 +16,10 @@ app.use(
 );
 
 app.all("/api/auth/*splat", toNodeHandler(auth));
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 
 app.use(express.json());
 

@@ -1,4 +1,18 @@
 services:
+  server:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://soulfather:soulfather@db:5432/soulfather
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/health || exit 1"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
   db: 
     image: postgres:15
     # url is postgres://soulfather:soulfather@localhost:5432/soulfather
@@ -8,3 +22,9 @@ services:
       POSTGRES_DB: soulfather
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U soulfather -d soulfather -h localhost -p 5432"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
